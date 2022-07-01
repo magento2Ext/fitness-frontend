@@ -1,0 +1,16 @@
+footer.page-footer { position: fixed !important; }
+.right-panel {
+    position: relative;
+    margin-top: 110px;
+    margin: 110px 10px 0px 130px;
+}
+.organization-table td, .organization-table th {
+	width: 200px;	
+}
+.right-panel main{ margin: 20px;  }
+.modal-right {
+    display: none;
+}
+.modal-right.edit-form, .modal-right.edit-form .modal.fade.show  {
+    display: block;
+}

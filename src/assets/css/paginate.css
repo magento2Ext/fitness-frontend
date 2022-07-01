@@ -1,0 +1,39 @@
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    font-size:12px;
+}
+
+.pagination a {
+    cursor: default;
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid purple;
+    color: purple;
+    margin-left: 10px;
+}
+
+.pagination li:not(.disabled) a:hover {
+    cursor: pointer;
+}
+
+.pagination li a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagination li.active a {
+    color: purple;
+}
+
+.pagination li.disabled a {
+    pointer-events: none;
+    color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+}
+
+.pagination-txt{
+    display: inline;
+    font-size: 12px;
+}

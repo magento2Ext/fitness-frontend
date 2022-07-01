@@ -1,0 +1,25 @@
+.card.card-container {
+    top: 90px;
+    width: 50%;
+    margin: 0 auto;
+	border: unset;
+}
+.card.card-container h2 {
+    color: #0069d9;
+    text-align: center;
+}
+.sidebar-menus {
+    float: left;
+    width: 20%;
+}
+.content {
+    float: left;
+    width: 80%;
+}
+.sidebar-menus li {
+    list-style: none;
+}
+.float-end {
+    margin-top: 7px;
+    margin-left: -10px;
+}
