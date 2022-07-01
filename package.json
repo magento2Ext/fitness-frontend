@@ -1,6 +1,6 @@
 {
   "name": "cp1-frontend",
-  "homepage": "http://localhost/fitnessapp",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
