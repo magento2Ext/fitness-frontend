@@ -29,24 +29,19 @@ class Sidebar extends React.Component {
 						</Link>
 					</li>
 					<li>
-						<Link to={"/motivational-videos"} className="nav-link">
-							<i class="iconsminds-pantone"></i> Motivational Videos
+						<Link to={"/motivations"} className="nav-link">
+							<i class="iconsminds-pantone"></i> Motivations
 						</Link>
 					</li>
 					<li>
-						<a href="#menu">
-							<i class="iconsminds-three-arrow-fork"></i> Menu
-						</a>
+						<Link to={"/education"} className="nav-link">
+							<i class="iconsminds-pantone"></i> Education
+						</Link>
 					</li>
 					<li>
-						<a href="Blank.Page.html">
-							<i class="iconsminds-bucket"></i> Blank Page
-						</a>
-					</li>
-					<li>
-						<a href="https://dore-jquery-docs.coloredstrategies.com">
-							<i class="iconsminds-library"></i> Docs
-						</a>
+						<Link to={"/teachers"} className="nav-link">
+							<i class="iconsminds-pantone"></i> Guided Yoga
+						</Link>
 					</li>
 				</ul>
 			</PerfectScrollbar>

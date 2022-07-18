@@ -3,7 +3,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 class AuthService {
   login(email, password) {
     return axios
-      .post(API_URL+"admin/login", {
+      .post(API_URL+"organization/login", {
         email,
         password
       })
@@ -11,18 +11,17 @@ class AuthService {
 		  console.log(response);
 		if (response.data.result_obj.access_token) {
 			console.log(response.data.result_obj);	
-          localStorage.setItem("user", JSON.stringify(response.data.result_obj));
+          localStorage.setItem("orguser", JSON.stringify(response.data.result_obj));
         }
         return response.data;
       });
   }
-  
   logout() {
-	localStorage.removeItem("user");
+	localStorage.removeItem("orguser");
 	
   }
  getCurrentUser() {
-	return JSON.parse(localStorage.getItem('user'));
+	return JSON.parse(localStorage.getItem('orguser'));
   }
 }
 export default new AuthService();

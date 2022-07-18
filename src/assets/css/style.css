@@ -23,3 +23,16 @@
     margin-top: 7px;
     margin-left: -10px;
 }
+table.headings {
+    width: 100%;
+}
+.login-page-logo img{
+	display:block;
+	margin: 0 auto;
+}
+.text-white.h2.login { text-align: center;
+    padding-top: 33px;
+    font-size: 25px;}
+.all-modules {
+    padding-left: 21px;
+}

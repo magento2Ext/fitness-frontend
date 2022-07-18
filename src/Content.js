@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Redirect, Route } from 'react-router';
 import { BrowserRouter, Link } from 'react-router-dom';
 import AuthService from "./Services/auth.service";
-import Organization from "./Components/Organization/organizations-list";
+import Organization from "./Components/Admin/Organization/organizations-list";
 import Sidebar from "./Sidebar";
 class Content extends React.Component {
     constructor(props) {

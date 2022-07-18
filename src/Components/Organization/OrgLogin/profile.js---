@@ -1,0 +1,146 @@
+import React ,{useState} from 'react';
+import AWS from 'aws-sdk'
+import { Switch, Redirect, Route } from 'react-router';
+import { BrowserRouter, Link } from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { FormErrors } from './FormErrors';
+import AuthService from "../../../Services/orgauth";
+import Sidebar from "../Sidebar";
+import Header from "../header";
+
+const S3_BUCKET ='fitness-new';
+const REGION ='us-west-2';
+
+
+
+AWS.config.update({
+    accessKeyId: 'AKIASYUAW7H5GTSXJKOP',
+    secretAccessKey: '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'
+})
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
+
+const UploadImageToS3WithNativeSdk = () => {
+
+    const [progress , setProgress] = useState(0);
+    const [selectedFile, setSelectedFile] = useState(null);
+	const [currentUser] = useState(AuthService.getCurrentUser());
+	const [value, setValue] = useState({logo: '2', themeone: '1', themetwo: '2'});
+	
+	
+	let token = JSON.parse(localStorage.getItem('orguser'));
+		if (!token) {
+			this.props.history.push('/');
+		} 
+	
+	const submitFormAdd = e => {
+    e.preventDefault()
+	//alert(selectedFile.name)
+    fetch(process.env.REACT_APP_API_URL+'organization/profile/update', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(value)
+    })
+      .then(response => response.json())
+      .then(items => {
+		  if(items.result)
+		  { 
+			items = items.result; this.setState({items})  
+			this.props.addItemToState(items)
+          this.props.toggle()
+		  uploadFile(selectedFile);
+		  }
+		  else {
+			console.log('failure')
+		  }
+		}
+		)
+      .catch(err => console.log(err))
+  }
+	
+
+    const handleFileInput = (e) => {
+		setSelectedFile(e.target.files[0]);
+		const name = e.target.name;
+		const value = e.target.value;
+        setValue({[name]:value});
+		
+    }
+const onChange = (event) => {
+	const name = event.target.name;
+	const value = event.target.value;
+    setValue({[name]:value});
+  };
+    const uploadFile = (file) => {
+
+        const params = {
+            ACL: 'public-read',
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: file.name
+        };
+
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                setProgress(Math.round((evt.loaded / evt.total) * 100))
+            })
+            .promise()
+ .then(res => {
+  return file.name;
+ })
+			
+    }
+
+
+    return <div class="container-fluid">
+	  <Header />
+	  <div class="main-container">
+		<div class="menu left-panel">
+				<Sidebar />
+		</div>
+      <div class="right-panel">
+		<Form encType='multipart/form-data' onSubmit={submitFormAdd}>
+	    <FormGroup>
+          <Label for="logo"><b>Upload Logo</b></Label>
+          <Input onChange={onChange} accept=".png, .jpg, .jpeg" type="file" name="logo" id="logo"  value={value.logo} />
+		  <p></p>
+        </FormGroup>
+		<FormGroup>
+		<div class="saas-system">
+		<table class="headings">
+		<tr>
+		<th></th>
+		<th>Primary</th>
+		<th>Secondary</th>
+		<th>Text</th>
+		</tr>
+		<tr>
+		<th><input type="radio" name="themeone" value={value.themeone} onChange={onChange} /> Theme One</th>
+		<td><span style={{background: '#A26A50',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		<td><span style={{background: '#DDC1B4',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		<td><span style={{background: '#A26A50',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		</tr>
+		<tr>
+		<th><input type="radio" name="themetwo" value={value.themetwo} onChange={onChange} /> Theme Two</th>
+		<td><span style={{background: '#A91079',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		<td><span style={{background: '#F806CC',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		<td><span style={{background: '#A91079',borderRadius:'100%',height:'30px',width: '30px',float: 'left'}}></span></td>
+		</tr>
+		</table>
+		<p></p>
+		</div>
+		</FormGroup>
+        
+        <Button>Submit</Button>
+      </Form>
+	  </div>
+	  </div>
+	  </div>
+}
+
+export default UploadImageToS3WithNativeSdk;

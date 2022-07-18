@@ -5,12 +5,18 @@ import { Container, Row, Col } from 'reactstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/style.css";
 import AuthService from "./Services/auth.service";
-import Login from "./Components/OrgLogin/login";
-import Profile from "./Components/OrgLogin/profile";
-import Dashboard from "./Components/Dashboard/dashboard";
-import Organizations from "./Components/Organization/organizations-list";
-import Motivations from "./Components/Motivations/motivations";
-import Employees from "./Components/Employees/employees";
+import Login from "./Components/Admin/OrgLogin/login";
+import Dashboard from "./Components/Admin/Dashboard/dashboard";
+import AdOrganizations from "./Components/Admin/Organization/organizations-list";
+import Motivations from "./Components/Admin/Motivations/motivations";
+import Education from "./Components/Admin/Education/education";
+import Employees from "./Components/Admin/Employees/employees";
+import Teachers from "./Components/Admin/Guided-yoga/Teacher/teachers";
+
+import OrgLogin from "./Components/Organization/OrgLogin/login";
+import Organizations from "./Components/Organization/Employees/employess-list";
+import OrgProfile from "./Components/Organization/OrgLogin/profile";
+
 
 class App extends Component {
   
@@ -43,10 +49,15 @@ class App extends Component {
 	 <BrowserRouter>
 	  <Switch>
 			<Route exact path='/' component={Login} />
+			<Route exact path='/org-login' component={OrgLogin} />
             <Route exact path="/dashboard" component={Dashboard} />
-			<Route exact path="/organizations-list" component={Organizations} />
-            <Route exact path="/motivational-videos" component={Motivations} />
+			<Route exact path="/organizations-list" component={AdOrganizations} />
+			<Route exact path="/org-employees" component={Organizations} />
+            <Route exact path="/motivations" component={Motivations} />
+			<Route exact path="/education" component={Education} />
 			<Route exact path="/employees" component={Employees} />
+			<Route exact path="/org-profile" component={OrgProfile} />
+			<Route exact path="/teachers" component={Teachers} />
        </Switch> 
 	   </BrowserRouter>
     </main>
